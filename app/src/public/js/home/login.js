@@ -11,12 +11,23 @@ function login() {
         id : id.value,
         psword : psword.value, 
     };
-    fetch("/login",{
+
+    fetch("/login", {
         method : "POST",
-        headers:{
-            "Content-Type" : "application/json"
+        headers: {
+            "Content-Type" : "application/json",
         },
         body : JSON.stringify(req), //json객체로 문자열로 반환시킴
-    });
-    
+    } )
+    .then((res)=>res.json())
+    .then((res)=>{
+       if(res.success){
+        location.href = "/";
+       } else{
+        alert(res.msg);
+       }
+    })
+    .catch((err)=>{
+        console.error("로그인 중 에러 발생");
+    })//에러를 처리해줌
 };
