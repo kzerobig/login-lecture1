@@ -3,7 +3,7 @@ class UserStorage {
     static #users = {              //#은 은닉화를 도와줌
         id : ["rlaeodud"],
         psword : ["1234"],
-        nams : ["김대영"],
+        name : ["김대영"],
     };
 
     static getUsers(...fields){
@@ -27,5 +27,13 @@ class UserStorage {
         },{});
         return userInfo;
     }
+    static save(userInfo){
+        const users = this.#users;
+        users.id.push(userInfo.id);
+        users.psword.push(userInfo.psword);
+        users.name.push(userInfo.name);
+        return {success:true};
+    }
 }
+
 module.exports = UserStorage;
